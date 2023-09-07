@@ -1,0 +1,10 @@
+name = "Squad Helmet Cams"
+author = "117Briggy"
+mainprefix = "x"
+prefix = "squadhc"
+
+[hemtt.launch.default]
+workshop = [
+    "450814997",
+    "2679569820"
+]
