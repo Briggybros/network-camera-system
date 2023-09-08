@@ -5,6 +5,5 @@ prefix = "squadhc"
 
 [hemtt.launch.default]
 workshop = [
-    "450814997",
-    "2679569820"
+    "450814997"
 ]

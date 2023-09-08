@@ -1,3 +1,3 @@
 @echo off
-hemtt.exe dev
+hemtt.exe build
 pause
