@@ -46,7 +46,7 @@ class RscCustomInfoHelmetCam : RscCustomInfoUAVFeed {
 		class CameraPictureSingleView: RscPicture
 		{
 			idc = 102;
-			text = "#(argb,512,512,1)r2t(headCam,1.0)";
+			text = "#(argb,512,512,1)r2t(squadhc_headCam,1.0)";
 			x = "0.125 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
 			y = "1.125 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 			w = "(profilenamespace getvariable [""IGUI_GRID_CUSTOMINFORIGHT_W"",		(10 * 			(			((safezoneW / safezoneH) min 1.2) / 40))]) - 0.25 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";

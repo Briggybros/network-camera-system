@@ -6,3 +6,5 @@
 - Arma 3 Tools
 - Mikero Tools
 - HEMTT
+
+Inspired by [Helmet Mounted Camera](https://steamcommunity.com/sharedfiles/filedetails/?id=2679569820)
