@@ -1,3 +1,5 @@
+#include "ids.hpp"
+
 disableSerialization;
 
 with localNamespace do {
@@ -5,15 +7,21 @@ with localNamespace do {
 	private _currentSelected = player;
 
 	// Create the camera and render to p2p texture "squadhc_headCam"
-	private _camera = "camera" camCreate (position player);
-	_camera cameraEffect ["internal", "BACK", "squadhc_headCam"];
+	private _left_camera = "camera" camCreate (position player);
+	_left_camera cameraEffect ["internal", "BACK", "squadhc_left_headCam"];
+	private _right_camera = "camera" camCreate (position player);
+	_right_camera cameraEffect ["internal", "BACK", "squadhc_right_headCam"];
 
 	// TODO: Make CBA configurable
-	_camera camSetFov 1;
+	_left_camera camSetFov 1;
+	_right_camera camSetFov 1;
 
 	// Get the UI ctrl that shows the cam's player name
-	private _headCamUI = uiNamespace getVariable "squadhc_HeadCamPanel";
-	private _camOwner_UICtrl = _headCamUI displayCtrl 104;
+	private _left_headCamUI = uiNamespace getVariable "squadhc_left_HeadCamPanel";
+	private _right_headCamUI = uiNamespace getVariable "squadhc_right_HeadCamPanel";
+
+	private _left_camOwner_UICtrl = _left_headCamUI displayCtrl NAME_CTRL_IDC;
+	private _right_camOwner_UICtrl = _right_headCamUI displayCtrl NAME_CTRL_IDC;
 
 	// Fnc to set camera to a unit
 	// params:
@@ -53,11 +61,15 @@ with localNamespace do {
 	};
 
 	// Setup the headcam on the player
-	[_currentSelected, _camera, _camOwner_UICtrl] call _fnc_setHeadCam;
+	[_currentSelected, _left_camera, _left_camOwner_UICtrl] call _fnc_setHeadCam;
+	[_currentSelected, _right_camera, _right_camOwner_UICtrl] call _fnc_setHeadCam;
 
-	localNamespace setVariable ["squadhc_currentSelected", _currentSelected];
-	localNamespace setVariable ["squadhc_camera", _camera];
-	localNamespace setVariable ["squadhc_camOwner_UICtrl", _camOwner_UICtrl];
+	localNamespace setVariable ["squadhc_left_currentSelected", _currentSelected];
+	localNamespace setVariable ["squadhc_right_currentSelected", _currentSelected];
+	localNamespace setVariable ["squadhc_left_camera", _left_camera];
+	localNamespace setVariable ["squadhc_right_camera", _right_camera];
+	localNamespace setVariable ["squadhc_left_camOwner_UICtrl", _left_camOwner_UICtrl];
+	localNamespace setVariable ["squadhc_right_camOwner_UICtrl", _right_camOwner_UICtrl];
 	localNamespace setVariable ["squadhc_fnc_setHeadCam", _fnc_setHeadCam];
 	localNamespace setVariable ["squadhc_fnc_findNextUnitInSquad", _fnc_findNextUnitInSquad];
 };
@@ -65,12 +77,12 @@ with localNamespace do {
 // When the user changes mode on the left info panel
 addUserActionEventHandler ["NextModeLeftVehicleDisplay", "Activate", {
 	infoPanel "left" params ["_componentClass", "_componentType"];
-	if (_componentClass isEqualTo "squadhc_HelmetCamDisplay") then {
+	if (_componentClass isEqualTo "squadhc_HelmetCamDisplayLeft") then {
 		
 		with localNamespace do {
-			private _currentSelected = localNamespace getVariable "squadhc_currentSelected";
-			private _camera = localNamespace getVariable "squadhc_camera";
-			private _camOwner_UICtrl = localNamespace getVariable "squadhc_camOwner_UICtrl";
+			private _currentSelected = localNamespace getVariable "squadhc_left_currentSelected";
+			private _camera = localNamespace getVariable "squadhc_left_camera";
+			private _camOwner_UICtrl = localNamespace getVariable "squadhc_left_camOwner_UICtrl";
 			private _fnc_setHeadCam = localNamespace getVariable "squadhc_fnc_setHeadCam";
 			private _fnc_findNextUnitInSquad = localNamespace getVariable "squadhc_fnc_findNextUnitInSquad";
 
@@ -79,7 +91,7 @@ addUserActionEventHandler ["NextModeLeftVehicleDisplay", "Activate", {
 			// Set the headcam to the next unit
 			[_nextUnit, _camera, _camOwner_UICtrl] call _fnc_setHeadCam;
 			// Update the current unit to the new one
-			localNamespace setVariable ["squadhc_currentSelected", _nextUnit];
+			localNamespace setVariable ["squadhc_left_currentSelected", _nextUnit];
 		};
 	};
 }];
@@ -87,12 +99,12 @@ addUserActionEventHandler ["NextModeLeftVehicleDisplay", "Activate", {
 // When the user changes mode on the right info panel
 addUserActionEventHandler ["NextModeRightVehicleDisplay", "Activate", {
 	infoPanel "right" params ["_componentClass", "_componentType"];
-	if (_componentClass == "squadhc_HelmetCamDisplay") then {
+	if (_componentClass == "squadhc_HelmetCamDisplayRight") then {
 
 		with localNamespace do {
-			private _currentSelected = localNamespace getVariable "squadhc_currentSelected";
-			private _camera = localNamespace getVariable "squadhc_camera";
-			private _camOwner_UICtrl = localNamespace getVariable "squadhc_camOwner_UICtrl";
+			private _currentSelected = localNamespace getVariable "squadhc_right_currentSelected";
+			private _camera = localNamespace getVariable "squadhc_right_camera";
+			private _camOwner_UICtrl = localNamespace getVariable "squadhc_right_camOwner_UICtrl";
 			private _fnc_setHeadCam = localNamespace getVariable "squadhc_fnc_setHeadCam";
 			private _fnc_findNextUnitInSquad = localNamespace getVariable "squadhc_fnc_findNextUnitInSquad";
 
@@ -101,7 +113,7 @@ addUserActionEventHandler ["NextModeRightVehicleDisplay", "Activate", {
 			// Set the headcam to the next unit
 			[_nextUnit, _camera, _camOwner_UICtrl] call _fnc_setHeadCam;
 			// Update the current unit to the new one
-			localNamespace setVariable ["squadhc_currentSelected", _nextUnit];
+			localNamespace setVariable ["squadhc_right_currentSelected", _nextUnit];
 		};
 	};
 }];

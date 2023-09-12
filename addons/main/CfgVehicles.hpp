@@ -13,11 +13,10 @@ class CfgVehicles
             {
                 class Components : Components
                 {
-                    class squadhc_HelmetCamDisplay
+                    class squadhc_HelmetCamDisplayLeft
                     {
                         componentType = "CustomDisplayComponent";
-                        // TODO: Support different cams on different sides?
-                        resource = "RscCustomInfoHelmetCam";
+                        resource = "RscCustomInfoHelmetCamLeft";
                     };
                 };
             };
@@ -25,11 +24,10 @@ class CfgVehicles
             {
                 class Components : Components
                 {
-                    class squadhc_HelmetCamDisplay
+                    class squadhc_HelmetCamDisplayRight
                     {
                         componentType = "CustomDisplayComponent";
-                        // TODO: Support different cams on different sides?
-                        resource = "RscCustomInfoHelmetCam";
+                        resource = "RscCustomInfoHelmetCamRight";
                     };
                 };
             };
