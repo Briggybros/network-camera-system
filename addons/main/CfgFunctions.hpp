@@ -4,7 +4,11 @@ class CfgFunctions
 	{
 		class Core
 		{
-			PATHTO_FNC(setSquadHelmetCams);
+			PATHTO_FNC(assignCamera);
+			PATHTO_FNC(clientInit);
+			PATHTO_FNC(cycleUnits);
+			PATHTO_FNC(getNextUnitInGroup);
+			PATHTO_FNC(setupCamera);
 		};
 	};
 };
