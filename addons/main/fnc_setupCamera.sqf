@@ -13,6 +13,7 @@ switch (_side) do {
 	case "left": { _r2tName = "squadhc_left_headCam"; };
 	case "right": { _r2tName = "squadhc_right_headCam"; };
 };
+_cameraObj setVariable ["squadhc_r2t", _r2tName];
 _camera cameraEffect ["internal", "BACK", _r2tName];
 
 // TODO: Make CBA configurable

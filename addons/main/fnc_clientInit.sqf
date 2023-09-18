@@ -1,3 +1,5 @@
+if (!hasInterface) exitWith {};
+
 // Create the cameras
 private _left_cameraObj = [player, "left"] call squadhc_fnc_setupCamera;
 private _right_cameraObj = [player, "right"] call squadhc_fnc_setupCamera;

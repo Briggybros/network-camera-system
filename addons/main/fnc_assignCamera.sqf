@@ -9,17 +9,17 @@ params ["_cameraObj", "_unit"];
 
 private _camera = _cameraObj getVariable "squadhc_camera";
 
-private _unitCameras;
-
 // Remove this camera from the previous unit
 private _previousUnit = _cameraObj getVariable ["squadhc_unit", nil];
-_unitCameras = _previousUnit getVariable ["squadhc_cameras", []];
+private _unitCameras = _previousUnit getVariable ["squadhc_cameras", []];
 _unitCameras = _unitCameras - [_cameraObj];
 _previousUnit setVariable ["squadhc_cameras", _unitCameras];
 
 // Move and attach camera to the new unit
 _camera attachTo [_unit, [0.18,-0.15,0.17], "head", true];
 _camera setVectorDir (eyeDirection _unit);
+private _r2tName = _cameraObj getVariable "squadhc_r2t";
+_camera cameraEffect ["internal", "BACK", _r2tName];
 _camera camCommit 0;
 
 // Set the followed unit on the camera obj
