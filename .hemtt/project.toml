@@ -3,6 +3,9 @@ author = "117Briggy"
 mainprefix = "x"
 prefix = "squadhc"
 
+[version]
+git_hash = 0
+
 [hemtt.launch.default]
 workshop = [
     "450814997"
