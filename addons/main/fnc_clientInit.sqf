@@ -23,3 +23,13 @@ addUserActionEventHandler ["NextModeRightVehicleDisplay", "Activate", {
 		["right"] call squadhc_fnc_cycleUnits;
 	};
 }];
+
+[missionNamespace, "arsenalClosed", {
+	with uiNamespace do {
+		0 spawn {
+			uiSleep 0.5;
+			[localNamespace getVariable "squadhc_left_cameraObj"] call squadhc_fnc_reinitCamera;
+			[localNamespace getVariable "squadhc_right_cameraObj"] call squadhc_fnc_reinitCamera;
+		};
+	};
+}] call BIS_fnc_addScriptedEventHandler;
